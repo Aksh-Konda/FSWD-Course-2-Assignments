@@ -10,15 +10,21 @@ export class PromotionService {
   constructor() { }
 
   getPromotions(): Promise<Promotion[]> {
-    return Promise.resolve(PROMOTIONS);
+    return new Promise(resolve => {
+      setTimeout(() => resolve(Promise.resolve(PROMOTIONS)), 2000);
+    });
   }
 
   getPromotion(id: string): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.find((promo: Promotion) => promo.id == id));
+    return new Promise(resolve => {
+      setTimeout(() => resolve(PROMOTIONS.find((promo: Promotion) => promo.id == id)), 2000);
+    });
   }
 
   getFeaturedPromotion(): Promise<Promotion> {
-    return Promise.resolve(PROMOTIONS.find((promo: Promotion) => promo.featured));
+    return new Promise(resolve => {
+      setTimeout(() => resolve(PROMOTIONS.find((promo: Promotion) => promo.featured)), 2000);
+    });
   }
 
 }
