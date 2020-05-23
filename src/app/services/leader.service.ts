@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { LEADERS } from '../shared/leaders';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +12,16 @@ export class LeaderService {
   constructor() { }
 
   getLeaders(): Promise<Leader[]> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(LEADERS), 2000);
-    });
+    return of(LEADERS).pipe(delay(2000)).toPromise();
   }
 
   getLeader(id: string): Promise<Leader> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(LEADERS.find((leader: Leader) => leader.id == id)), 2000);
-    });
+    return of(LEADERS.find((leader: Leader) => leader.id == id))
+      .pipe(delay(2000)).toPromise();
   }
 
   getFeaturedLeader(): Promise<Leader> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(LEADERS.find((leader: Leader) => leader.featured)), 2000);
-    });
+    return of(LEADERS.find((leader: Leader) => leader.featured))
+      .pipe(delay(2000)).toPromise();
   }
 }
