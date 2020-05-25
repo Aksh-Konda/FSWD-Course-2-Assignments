@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
@@ -42,6 +42,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
+    @Inject('BaseURL') private baseURL,
   ) { }
 
   ngOnInit() {
@@ -98,12 +99,12 @@ export class DishdetailComponent implements OnInit {
     comment.date = new Date().toISOString();
     this.dish.comments.push(comment);
     console.log(comment);
+    this.commentFormDirective.resetForm();
     this.commentForm.reset({
       author: '',
       rating: 5,
       comment: '',
     });
-    this.commentFormDirective.reset();
   }
   setPrevNext(dishId: string) {
     const index = this.dishIds.indexOf(dishId);

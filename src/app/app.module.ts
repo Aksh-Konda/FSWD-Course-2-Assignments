@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -38,6 +39,8 @@ import { LeaderService } from './services/leader.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
+import { baseURL } from './shared/baseurl';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -75,6 +79,7 @@ import { LoginComponent } from './login/login.component';
     DishService,
     PromotionService,
     LeaderService,
+    { provide: 'BaseURL', useValue: baseURL },
   ],
   entryComponents: [
     LoginComponent,
