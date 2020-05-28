@@ -18,6 +18,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   commentForm: FormGroup;
+  errMess: string;
 
   @ViewChild('cform') commentFormDirective;
 
@@ -53,7 +54,8 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dish => {
         this.dish = dish;
         this.setPrevNext(dish.id);
-      });
+      },
+        errMess => this.errMess = errMess);
     this.createForm();
   }
 
