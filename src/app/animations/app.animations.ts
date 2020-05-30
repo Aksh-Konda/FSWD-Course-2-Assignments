@@ -40,7 +40,7 @@ export function expand() {
     return trigger('expand', [
         state('*', style({
             opacity: 1,
-            transform: 'translateY(0)',
+            transform: 'translateX(0)',
         })),
         transition(':enter', [
             style({
